@@ -13,7 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			favourites: [],
+			People: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -41,6 +43,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			getPeople: () => {
+				const store = getStore();
+
+				fetch("https://www.swapi.tech/api/people")
+					.then(resp => {
+						console.log(resp.code);
+						return resp.json();
+					})
+					.then(data => {
+						let arrPeople = data.results.map(item => {
+							return { ...item, favorite: false };
+						});
+						setStore({ People: arrPeople });
+					})
+					.catch(error => console.log("Error loading message from backend", error));
 			}
 		}
 	};
