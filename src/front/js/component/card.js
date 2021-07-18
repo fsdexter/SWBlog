@@ -1,8 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/card.scss";
 
 export const Card = props => {
+	const { store, actions } = useContext(Context);
+	var id = props.id - 1;
+
+	var type = props.type;
 	return (
 		<>
 			<div className="card " style={({ width: "14rem" }, { height: "17rem" })}>
@@ -13,6 +17,11 @@ export const Card = props => {
 					<a href="#" className="btn btn-primary">
 						More
 					</a>
+					{props.heart === false ? (
+						<i className="far fa-heart text-danger" onClick={() => actions.changeHeart(id, true, type)} />
+					) : (
+						<i className="fa fa-heart text-danger" onClick={() => actions.changeHeart(id, false, type)} />
+					)}
 				</div>
 			</div>
 		</>

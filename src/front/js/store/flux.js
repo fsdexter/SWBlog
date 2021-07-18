@@ -1,3 +1,5 @@
+import { object } from "prop-types";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -14,8 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			favourites: [],
-			People: []
+			fave: [],
+			people: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -54,11 +56,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						let arrPeople = data.results.map(item => {
-							return { ...item, favorite: false };
+							return { ...item, fave: false, type: "people" };
 						});
-						setStore({ People: arrPeople });
+						setStore({ people: arrPeople });
 					})
 					.catch(error => console.log("Error loading message from backend", error));
+			},
+			changeHeart: (id, bool, type) => {
+				const store = getStore();
+				if (type === "people") {
+					const heart = store.people.map((elm, i) => {
+						if (i === id) elm.fave = bool;
+						return elm;
+					});
+					setStore({ people: heart });
+				}
 			}
 		}
 	};

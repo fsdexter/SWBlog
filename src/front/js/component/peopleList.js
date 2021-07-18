@@ -12,13 +12,15 @@ export const PeopleList = props => {
 
 	return (
 		<>
-			{store.People.map((People, index) => {
+			{store.people.map((people, index) => {
 				return (
 					<div key={index} className="col-md-3">
 						<Card
 							img={"https://ryanacademy.ie/wp-content/uploads/2017/04/user-placeholder.png"}
-							name={People.name}
-							description={People.url}
+							name={people.name}
+							heart={people.fave}
+							id={people.uid}
+							type={people.type}
 						/>
 					</div>
 				);
