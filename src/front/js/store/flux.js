@@ -17,7 +17,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			fave: [],
-			people: []
+			people: [],
+			details: [],
+			properties: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -71,6 +73,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					setStore({ people: heart });
 				}
+			},
+			showDetails: url => {
+				const store = getStore();
+
+				fetch(url)
+					.then(resp => resp.json())
+					.then(data => {
+						let arrDetails = data.result;
+						console.log(arrDetails);
+						var detalhes = Object.entries(arrDetails.properties);
+						setStore({ properties: detalhes });
+						setStore({ details: arrDetails });
+						console.log(details);
+					})
+					.catch(error => console.log("Error loading message from backend", error));
+
+				//var detalhes = Object.entries(detalis.properties)
+
+				//setStore({ properties: Object.entries(store.details.properties) })
 			}
 		}
 	};

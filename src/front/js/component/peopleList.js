@@ -21,6 +21,7 @@ export const PeopleList = props => {
 							heart={people.fave}
 							id={people.uid}
 							type={people.type}
+							url={people.url}
 						/>
 					</div>
 				);

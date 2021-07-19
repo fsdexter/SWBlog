@@ -15,6 +15,7 @@ export const Home = () => {
 					<PeopleList />
 				</div>
 			</div>
+			;
 		</>
 	);
 };
