@@ -49,8 +49,7 @@ function Dropdown({ title, items }) {
 					{items.map(item => (
 						<li className="dd-list-item" key={item.id}>
 							<button type="button" onClick={() => handleOnClick(item)}>
-								<span>{item.value}</span>
-								<span>{isItemInSelection(item) && "Selected"}</span>
+								<span>{item.name}</span>
 							</button>
 						</li>
 					))}
