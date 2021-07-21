@@ -18,6 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			fave: [],
 			people: [],
+			planets: [],
+			vehicles: [],
 			details: [],
 			properties: []
 		},
@@ -44,13 +46,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (i === index) elm.background = color;
 					return elm;
 				});
-
 				//reset the global store
 				setStore({ demo: demo });
 			},
 			getPeople: () => {
 				const store = getStore();
-
 				fetch("https://www.swapi.tech/api/people")
 					.then(resp => {
 						console.log(resp.code);
@@ -64,6 +64,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log("Error loading message from backend", error));
 			},
+			getPlanets: () => {
+				const store = getStore();
+				fetch("https://www.swapi.tech/api/planets")
+					.then(resp => {
+						console.log(resp.code);
+						return resp.json();
+					})
+					.then(data => {
+						let arrPlanets = data.results.map(item => {
+							return { ...item, fave: false, type: "planets" };
+						});
+						setStore({ planets: arrPlanets });
+					})
+					.catch(error => console.log("Error loading message from backend", error));
+			},
+			getVehicles: () => {
+				const store = getStore();
+				fetch("https://www.swapi.tech/api/vehicles")
+					.then(resp => {
+						console.log(resp.code);
+						return resp.json();
+					})
+					.then(data => {
+						let arrVehicles = data.results.map(item => {
+							return { ...item, fave: false, type: "vehicles" };
+						});
+						setStore({ vehicles: arrVehicles });
+					})
+					.catch(error => console.log("Error loading message from backend", error));
+			},
 			changeHeart: (id, bool, type) => {
 				const store = getStore();
 				if (type === "people") {
@@ -72,26 +102,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return elm;
 					});
 					setStore({ people: heart });
+				} else if (type === "planets") {
+					const heart = store.planets.map((elm, i) => {
+						if (i === id) elm.fave = bool;
+						return elm;
+					});
+					setStore({ planets: heart });
+				} else if (type === "vehicles") {
+					const heart = store.vehicles.map((elm, i) => {
+						if (i === id) elm.fave = bool;
+						return elm;
+					});
+					setStore({ vehicles: heart });
 				}
+				let aux1 = [].concat(store.people, store.planets, store.vehicles);
+				let aux2 = aux1.filter(elm => elm.fave === true);
+				setStore({ fave: aux2 });
 			},
 			showDetails: url => {
 				const store = getStore();
-
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => {
 						let arrDetails = data.result;
-						console.log(arrDetails);
-						var detalhes = Object.entries(arrDetails.properties);
+						let detalhes = Object.entries(arrDetails.properties);
 						setStore({ properties: detalhes });
 						setStore({ details: arrDetails });
-						console.log(details);
 					})
 					.catch(error => console.log("Error loading message from backend", error));
-
-				//var detalhes = Object.entries(detalis.properties)
-
-				//setStore({ properties: Object.entries(store.details.properties) })
 			}
 		}
 	};

@@ -1,28 +1,27 @@
 import React, { Component, useContext, useState, useEffect } from "react";
-import { Card } from "../component/card";
+import { Card } from "./card";
 import { Context } from "../store/appContext";
 import "../../styles/list.scss";
-import people from "../../img/people.png";
 
-export const PeopleList = props => {
+export const PlanetsList = props => {
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
-		actions.getPeople();
+		actions.getPlanets();
 	}, []);
 
 	return (
 		<>
-			{store.people.map((people, index) => {
+			{store.planets.map((planets, index) => {
 				return (
 					<div key={index} className="col-md-3">
 						<Card
 							img={"https://ryanacademy.ie/wp-content/uploads/2017/04/user-placeholder.png"}
-							name={people.name}
-							heart={people.fave}
-							id={people.uid}
-							type={people.type}
-							url={people.url}
+							name={planets.name}
+							heart={planets.fave}
+							id={planets.uid}
+							type={planets.type}
+							url={planets.url}
 						/>
 					</div>
 				);

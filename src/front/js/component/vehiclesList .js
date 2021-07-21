@@ -1,28 +1,28 @@
 import React, { Component, useContext, useState, useEffect } from "react";
-import { Card } from "../component/card";
+import { Card } from "./card";
 import { Context } from "../store/appContext";
 import "../../styles/list.scss";
-import people from "../../img/people.png";
 
-export const PeopleList = props => {
+export const VehiclesList = props => {
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
-		actions.getPeople();
+		actions.getVehicles();
 	}, []);
 
+	var id = store.vehicles.uid;
 	return (
 		<>
-			{store.people.map((people, index) => {
+			{store.vehicles.map((vehicles, index) => {
 				return (
 					<div key={index} className="col-md-3">
 						<Card
 							img={"https://ryanacademy.ie/wp-content/uploads/2017/04/user-placeholder.png"}
-							name={people.name}
-							heart={people.fave}
-							id={people.uid}
-							type={people.type}
-							url={people.url}
+							name={vehicles.name}
+							heart={vehicles.fave}
+							id={index + 1}
+							type={vehicles.type}
+							url={vehicles.url}
 						/>
 					</div>
 				);
