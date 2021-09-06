@@ -1,7 +1,11 @@
 .myScroll{
     overflow-x: scroll;
     overflow-y: hidden;
-    
+    background-color: rgba(99, 97, 97, 0.651);
     align-items: center;
     padding: 2rem 1rem;
+    height: "30rem"
+}
+body{
+    background: url(https://i.ytimg.com/vi/9GrdKqQlDXQ/maxresdefault.jpg);
 }

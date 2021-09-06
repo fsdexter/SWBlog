@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
+import "../../styles/home.scss";
 import { PeopleList } from "../component/peopleList";
 
-import "../../styles/home.scss";
 import { PlanetsList } from "../component/planetsList";
 import { VehiclesList } from "../component/vehiclesList ";
 
@@ -12,14 +12,20 @@ export const Home = () => {
 	return (
 		<>
 			<div className="container">
-				<h3 className="text-white text-left mb-4">Characters</h3>
-				<div className="d-flex flex-row myScroll" style={{ height: "30rem" }}>
+				<h1 className="text-white text-left mb-4">Characters</h1>
+				<div className="d-flex flex-row myScroll">
 					<PeopleList />
 				</div>
-				<div className="d-flex flex-row myScroll" style={{ height: "30rem" }}>
+			</div>
+			<div className="container">
+				<h1 className="text-white text-left mb-4">Planets</h1>
+				<div className="d-flex flex-row myScroll">
 					<PlanetsList />
 				</div>
-				<div className="d-flex flex-row myScroll" style={{ height: "30rem" }}>
+			</div>
+			<div className="container">
+				<h1 className="text-white text-left mb-4">Vehicles</h1>
+				<div className="d-flex flex-row myScroll">
 					<VehiclesList />
 				</div>
 			</div>

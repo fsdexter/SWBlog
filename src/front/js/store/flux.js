@@ -62,7 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						setStore({ people: arrPeople });
 					})
-					.catch(error => console.log("Error loading message from backend", error));
+					.catch(error => console.log("Error loading People", error));
 			},
 			getPlanets: () => {
 				const store = getStore();
@@ -77,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						setStore({ planets: arrPlanets });
 					})
-					.catch(error => console.log("Error loading message from backend", error));
+					.catch(error => console.log("Error loading Planets", error));
 			},
 			getVehicles: () => {
 				const store = getStore();
@@ -90,9 +90,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let arrVehicles = data.results.map(item => {
 							return { ...item, fave: false, type: "vehicles" };
 						});
+
 						setStore({ vehicles: arrVehicles });
 					})
-					.catch(error => console.log("Error loading message from backend", error));
+					.catch(error => console.log("Error loading Vehicles", error));
 			},
 			changeHeart: (id, bool, type) => {
 				const store = getStore();
