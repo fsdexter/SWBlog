@@ -20,7 +20,7 @@ export const PeopleList = props => {
 							img={Character}
 							name={people.name}
 							heart={people.fave}
-							id={people.uid}
+							id={people.id}
 							type={people.type}
 							url={people.url}
 						/>

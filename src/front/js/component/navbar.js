@@ -43,7 +43,7 @@ export const Navbar = () => {
 										</Link>
 										<i
 											className="fa fa-heart text-danger"
-											onClick={() => actions.changeHeart(item.uid - 1, false, item.type)}
+											onClick={() => actions.changeHeart(item.id, false, item.type)}
 										/>
 									</li>
 								);

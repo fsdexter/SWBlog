@@ -21,7 +21,7 @@ export const VehiclesList = props => {
 							img={ships}
 							name={vehicles.name}
 							heart={vehicles.fave}
-							id={index + 1}
+							id={vehicles.id}
 							type={vehicles.type}
 							url={vehicles.url}
 						/>

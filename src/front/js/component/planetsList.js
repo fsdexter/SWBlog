@@ -20,7 +20,7 @@ export const PlanetsList = props => {
 							img={Errantes}
 							name={planets.name}
 							heart={planets.fave}
-							id={planets.uid}
+							id={planets.id}
 							type={planets.type}
 							url={planets.url}
 						/>

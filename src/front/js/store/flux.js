@@ -57,8 +57,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return resp.json();
 					})
 					.then(data => {
-						let arrPeople = data.results.map(item => {
-							return { ...item, fave: false, type: "people" };
+						let arrPeople = data.results.map((item, index) => {
+							return { ...item, fave: false, type: "people", id: index };
 						});
 						setStore({ people: arrPeople });
 					})
@@ -72,8 +72,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return resp.json();
 					})
 					.then(data => {
-						let arrPlanets = data.results.map(item => {
-							return { ...item, fave: false, type: "planets" };
+						let arrPlanets = data.results.map((item, index) => {
+							return { ...item, fave: false, type: "planets", id: index };
 						});
 						setStore({ planets: arrPlanets });
 					})
@@ -87,8 +87,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return resp.json();
 					})
 					.then(data => {
-						let arrVehicles = data.results.map(item => {
-							return { ...item, fave: false, type: "vehicles" };
+						let arrVehicles = data.results.map((item, index) => {
+							return { ...item, fave: false, type: "vehicles", id: index };
 						});
 
 						setStore({ vehicles: arrVehicles });

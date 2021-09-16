@@ -5,7 +5,7 @@ import "../../styles/card.scss";
 
 export const Card = props => {
 	const { store, actions } = useContext(Context);
-	var id = props.id - 1;
+	var id = props.id;
 	var type = props.type;
 	var url = props.url;
 
